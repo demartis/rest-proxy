@@ -36,10 +36,16 @@ Install composer:
 curl -s https://getcomposer.org/installer | php
 ```
 
-Create a new project:
+Include in your project
 
 ```
-php composer.phar create-project gonzalo123/rest-proxy proxy
+php composer.phar require 'demartis/rest-proxy:1.0.*@dev'
+```
+
+OR Create a new project:
+
+```
+php composer.phar create-project demartis/rest-proxy proxy
 ```
 
 Run dummy server (only with PHP5.4)
