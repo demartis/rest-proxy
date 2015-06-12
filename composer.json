@@ -1,11 +1,17 @@
 {
-    "name": "gonzalo123/rest-proxy",
+    "name": "demartis/rest-proxy",
     "description": "Simple rest proxy",
     "authors": [
         {
             "name": "Gonzalo Ayuso",
             "email": "gonzalo123@gmail.com",
             "homepage": "http://gonzalo123.com/"
+        },
+        {
+            "name": "Riccardo De Martis",
+            "email": "riccardodemartis@hotmail.com",
+            "homepage": "http://demartis.it",
+            "role": "Web Developer"
         }
     ],
     "require": {
