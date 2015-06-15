@@ -83,9 +83,9 @@ class CurlWrapper
         curl_close($s);
 
         list($this->responseHeaders, $content) = $this->decodeOut($out);
-        if ($this->status != self::HTTP_OK) {
-            throw new \Exception("http error: {$this->status}", $this->status);
-        }
+//         if ($this->status != self::HTTP_OK) {
+//             throw new \Exception("http error: {$this->status}", $this->status);
+//         }
 
         return $content;
     }
