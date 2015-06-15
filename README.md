@@ -38,8 +38,9 @@ curl -s https://getcomposer.org/installer | php
 
 Include in your project
 
+
 ```
-php composer.phar require 'demartis/rest-proxy:1.0.*@dev'
+php composer.phar require 'demartis/rest-proxy:~1.0'
 ```
 
 OR Create a new project:
