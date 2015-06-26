@@ -4,7 +4,7 @@ namespace RestProxy;
 class CurlWrapper
 {
     const HTTP_OK = 200;
-    const USER_AGENT = 'gonzalo123/rest-proxy';
+    const USER_AGENT = 'demartis/rest-proxy';
 
     private $responseHeaders = [];
     private $requestHeaders = [];

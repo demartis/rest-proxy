@@ -9,7 +9,7 @@ use RestProxy\CurlWrapper;
 // Example for additional Curl request headers and additional curl options for all requests
 $requestHeaders = [
     'Content-Type:application/json',
-    'Authorization: Basic ' . base64_encode("username:password")
+//    'Authorization: Basic ' . base64_encode("username:password")
 ];
 $curlOptions    = [
     CURLOPT_SSL_VERIFYPEER => 0,

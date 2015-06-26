@@ -49,6 +49,13 @@ OR Create a new project:
 php composer.phar create-project demartis/rest-proxy proxy
 ```
 
+OR include the dev release
+
+```
+php composer.phar require 'demartis/rest-proxy:dev-master'
+```
+
+
 Run dummy server (only with PHP5.4)
 
 ```
