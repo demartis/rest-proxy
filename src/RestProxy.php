@@ -36,17 +36,35 @@ class RestProxy
         $this->map[$name] = $url;
     }
 
+//    public function run()
+//    {
+//        $url = $this->request->getPathInfo();
+//        foreach ($this->map as $name => $mapUrl) {
+//            if (strpos($url, $name) == 1 || $name == "/") {
+////                 return $this->dispatch($mapUrl . str_replace("/{$name}", NULL, $url));
+//                return $this->dispatch($mapUrl);
+//            }
+//        }
+//        throw new \Exception("Not match");
+//    }
+
     public function run()
     {
-        $url = $this->request->getPathInfo();
+        $url = $this->request->get('resource');
         foreach ($this->map as $name => $mapUrl) {
-            if (strpos($url, $name) == 1 || $name == "/") {
-//                 return $this->dispatch($mapUrl . str_replace("/{$name}", NULL, $url));
-                return $this->dispatch($mapUrl);
-            }
-        }
-        throw new \Exception("Not match");
-    }
+            if (strpos($url, $name) === 0 || $name == "/") {
+                if(strlen($url) > strlen($name)){
+                    $name=addslashes($name);
+                    $addString=str_replace("{$name}",null,$url);
+
+                    $mapUrl.=$addString;
+                    }
+                 return $this->dispatch($mapUrl);
+             }
+         }
+         throw new \Exception("Not match");
+     }
+
 
     public function getHeaders()
     {
