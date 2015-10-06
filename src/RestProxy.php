@@ -77,6 +77,11 @@ class RestProxy
         return $this->content;
     }
 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
     private function dispatch($url)
     {
         $queryString   = $this->request->getQueryString();
