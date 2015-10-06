@@ -16,6 +16,7 @@ class RestProxy
     private $map;
     private $content;
     private $headers;
+    private $status;
 
     private $actions = [
         self::GET     => 'doGet',
@@ -82,6 +83,7 @@ class RestProxy
         $action        = $this->getActionName($this->request->getMethod());
         $this->content = $this->curl->$action($url, $queryString);
         $this->headers = $this->curl->getHeaders();
+        $this->status= $this->curl->getStatus();
     }
 
     private function getActionName($requestMethod)
