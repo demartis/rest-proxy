@@ -82,7 +82,7 @@ class CurlWrapper
         $this->responseHeaders = curl_getinfo($s, CURLINFO_HEADER_OUT);
         curl_close($s);
 
-        list($this->responseHeaders, $content) = $this->decodeOut($out);
+        list($this->responseHeaders, $content) = HttpUtils::decodeOut($out);
 //         if ($this->status != self::HTTP_OK) {
 //             throw new \Exception("http error: {$this->status}", $this->status);
 //         }
@@ -90,46 +90,6 @@ class CurlWrapper
         return $content;
     }
 
-    private function decodeOut($out)
-    {
-        /*
-         * cure response if client send a 100-continue header:
-         * http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.20
-         */
-        $out=$this->preDecodeOut($out);
-
-        // It should be a fancy way to do that :(
-        $headersFinished = FALSE;
-        $headers         = $content = [];
-        $data            = explode("\n", $out);
-        foreach ($data as $line) {
-            if (trim($line) == '') {
-                $headersFinished = TRUE;
-            } else {
-                if ($headersFinished === FALSE && strpos($line, ':') > 0) {
-                    $headers[] = $line;
-                }
-
-                if ($headersFinished) {
-                    $content[] = $line;
-                }
-            }
-        }
-
-        return [$headers, implode("\n", $content)];
-    }
-    private function preDecodeOut($out){
-
-        $data  = explode("\n", $out);
-        if(count($data)){
-            if(stripos($data[0],"HTTP/1.1 100 Continue")!==false){
-                array_shift($data); //remove header
-                array_shift($data); //remove \n line
-            }
-
-        }
-        return implode("\n", $data);
-    }
 
     public function getStatus()
     {

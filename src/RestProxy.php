@@ -17,6 +17,7 @@ class RestProxy
     private $content;
     private $headers;
     private $status;
+    private $contentType;
 
     private $actions = [
         self::GET     => 'doGet',
@@ -82,6 +83,11 @@ class RestProxy
         return $this->status;
     }
 
+//    public function getContentType()
+//    {
+//        return $this->contentType;
+//    }
+
     private function dispatch($url)
     {
         $queryString   = $this->request->getQueryString();
@@ -89,6 +95,7 @@ class RestProxy
         $this->content = $this->curl->$action($url, $queryString);
         $this->headers = $this->curl->getHeaders();
         $this->status= $this->curl->getStatus();
+//        $this->contentType= $this->headers['Content-Type'];
     }
 
     private function getActionName($requestMethod)
