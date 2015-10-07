@@ -15,7 +15,9 @@ class HttpUtils
         // It should be a fancy way to do that :(
         $headersFinished = FALSE;
         $headers         = $content = [];
-        $data            = explode("\n", $out);
+
+        $data = self::getArrayData($out);
+
         foreach ($data as $line) {
             if (trim($line) == '') {
                 $headersFinished = TRUE;
@@ -35,7 +37,8 @@ class HttpUtils
 
     public static function removeContinue($out){
 
-        $data  = explode("\n", $out);
+        $data = self::getArrayData($out);
+
         if(count($data)){
             if(stripos($data[0],"HTTP/1.1 100 Continue")!==false){
                 array_shift($data); //remove header
@@ -46,4 +49,13 @@ class HttpUtils
         return implode("\n", $data);
     }
 
+
+    private static function getArrayData($out){
+        if(is_array($out)){
+            $data=$out;
+        }else{
+            $data  = explode("\n", $out);
+        }
+        return $data;
+    }
 }
