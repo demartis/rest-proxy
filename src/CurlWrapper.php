@@ -69,6 +69,18 @@ class CurlWrapper
         return $this->doMethod($s);
     }
 
+    public function doPatch($url, $queryString = NULL)
+    {
+        $s = curl_init();
+        curl_setopt($s, CURLOPT_URL, $url);
+        curl_setopt($s, CURLOPT_CUSTOMREQUEST, 'PATCH');
+        if (!is_null($queryString)) {
+            curl_setopt($s, CURLOPT_POSTFIELDS, parse_str($queryString));
+        }
+
+        return $this->doMethod($s);
+    }
+
     private function doMethod($s)
     {
         curl_setopt($s, CURLOPT_HTTPHEADER, $this->requestHeaders);

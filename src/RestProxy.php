@@ -10,7 +10,8 @@ class RestProxy
     const DELETE = "DELETE";
     const PUT = "PUT";
     const OPTIONS = "OPTIONS";
-    
+    const PATCH = "PATCH";
+
     private $request;
     private $curl;
     private $map;
@@ -25,6 +26,7 @@ class RestProxy
         self::DELETE  => 'doDelete',
         self::PUT     => 'doPut',
         self::OPTIONS => 'doOptions',
+        self::PATCH   => 'doPatch',
     ];
 
     public function __construct(Request $request, CurlWrapper $curl)
